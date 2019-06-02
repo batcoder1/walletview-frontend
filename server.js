@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 // Run the app by serving the static files
 // in the dist directory
-const port = process.env.PORT | 5000
+const port = process.env.PORT || 5000
 app.use(express.static('dist'));
 // For all GET requests, send back index.html
 // so that PathLocationStrategy can be use
