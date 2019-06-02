@@ -32,8 +32,6 @@ export class Web3Service {
         this.web3 = window.web3
         this.web3.eth.defaultAccount = this.web3.eth.accounts[0]
         const account = await this.web3.eth.getCoinbase()
-        console.log(`**** Account: ${account}`)
-        // Acccounts now exposed
         await this.refreshAccounts()
 
       } catch (error) {
@@ -64,8 +62,6 @@ export class Web3Service {
         return false;
       }
       if (!this.accounts || this.accounts.length !== accs.length || this.accounts[0] !== accs[0]) {
-        console.log('accs')
-        console.log(accs)
         this.accounts$.next(accs);
         this.accounts = accs;
         let balance = await this.getBalance(accs[0])
@@ -80,11 +76,9 @@ export class Web3Service {
     }
   }
   async getBalance(address) {
-    console.log('getBalance...' + address)
 
     const balanceWei = await this.web3.eth.getBalance(address)
     const balance = this.web3.utils.fromWei(balanceWei, 'ether')
-    console.log('balance:' + balance)
     return balance
 
 

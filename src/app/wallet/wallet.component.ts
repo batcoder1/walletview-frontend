@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AccountService } from '../util/account.service';
 import { Web3Service } from '../util/web3.service';
 declare var blockies: any;
-
+import {Account} from '../shared/models/account'
 @Component({
   selector: 'wallet',
   templateUrl: './wallet.component.html',
@@ -13,15 +13,8 @@ declare var blockies: any;
 export class WalletComponent implements OnInit, OnDestroy {
  
     accounts: string[];
-    accountData: any;
-    model = {
-      ether: 0,
-      amount: 5,
-      receiver: '',
-      balance: 0,
-      account: '',
-      link: ''
-    };
+    accountData: Account
+    
   
     status = '';
     cards = [];
@@ -33,7 +26,7 @@ export class WalletComponent implements OnInit, OnDestroy {
     numberOfTokens = 0;
     avatar:string;
     tokens$: Observable<[]>;
-
+    address: string;
     constructor(private web3Service: Web3Service, 
       private accountService: AccountService) {
     }
@@ -41,7 +34,7 @@ export class WalletComponent implements OnInit, OnDestroy {
     async ngOnInit() {
       
       await this.watchAccount();
-      this.web3Service.mainAccountBalance$.subscribe(balance => this.model.ether = balance)
+      this.web3Service.mainAccountBalance$.subscribe(balance => this.accountData.ETH.balance = balance)
       this.avatar = this.createBlockie();
     
     }
@@ -50,9 +43,9 @@ export class WalletComponent implements OnInit, OnDestroy {
       this.web3Service.accounts$.subscribe((accounts) => {
         console.log(accounts)
         this.accounts = accounts;
-        this.model.account = accounts[0];
+        this.address = accounts[0];
         
-        this.accountService.tokensAccount(this.accounts[0]).subscribe(data => {
+        this.accountService.tokensAccount(this.address).subscribe(data => {
           this.accountData = data
         })
 
@@ -60,7 +53,7 @@ export class WalletComponent implements OnInit, OnDestroy {
 
     }
     createBlockie(){
-      return blockies.create({ seed:this.model.account ,size: 8,scale: 16}).toDataURL()
+      return blockies.create({ seed:this.address ,size: 8,scale: 16}).toDataURL()
        
     }
   
