@@ -10,7 +10,8 @@
     "build-prod": "ng build --prod --aot",
     "lint": "ng lint",
     "postinstall": "node patch.js",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "serve-prod": "npm run build-prod && http-server dist -p 4200"
   },
   "engines": {
     "node": "8"

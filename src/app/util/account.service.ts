@@ -6,7 +6,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AccountService {
-  api_url = 'http://localhost:9000/api/v1';
+  api_url = process.env.BACKEND;
   pathBalance = '/balance'
   constructor(  private _http: HttpClient) { }
    
