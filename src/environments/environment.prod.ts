@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  BACKEND:'https://walletviewbackend.herokuapp.com/api/v1'
 };
