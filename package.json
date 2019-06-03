@@ -6,15 +6,16 @@
     "ng": "ng",
     "start": "node server.js",
     "start:dev": "ng serve --host 0.0.0.0 --poll=2000",
-    "build": "ng build  --prod --aot",
+    "build": "ng build",
     "build-prod": "ng build --prod --aot",
     "lint": "ng lint",
     "postinstall": "node patch.js",
     "e2e": "ng e2e",
-    "serve-prod": "npm run build-prod && http-server dist -p 4200"
+    "serve": "yarn build && http-server dist -p 4200",
+    "serve-prod": "yarn build-prod && http-server dist -p 4200"
   },
   "engines": {
-    "node": "8"
+    "node": "8.x"
   },
   "private": true,
   "dependencies": {
@@ -34,6 +35,7 @@
     "ethers": "^4.0.20",
     "express": "^4.17.1",
     "flex-layout": "^1.0.1",
+    "http-server": "^0.11.1",
     "material-design-icons": "^3.0.1",
     "ngx-socket-io": "^2.1.1",
     "rxjs": "^6.3.3",

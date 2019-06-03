@@ -14,7 +14,7 @@ export class WalletComponent implements OnInit, OnDestroy {
  
     accounts: string[];
     accountData: Account
-    
+    balance: number = 0;
   
     status = '';
     cards = [];
@@ -34,7 +34,7 @@ export class WalletComponent implements OnInit, OnDestroy {
     async ngOnInit() {
       
       await this.watchAccount();
-      this.web3Service.mainAccountBalance$.subscribe(balance => this.accountData.ETH.balance = balance)
+      this.web3Service.mainAccountBalance$.subscribe(balance => this.balance = balance)
       this.avatar = this.createBlockie();
     
     }

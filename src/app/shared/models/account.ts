@@ -14,3 +14,4 @@ export interface Account {
     totalTokensBalance: number,
     tokens: Token[]
 }
+

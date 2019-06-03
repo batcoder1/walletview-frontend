@@ -20,7 +20,7 @@ RUN groupadd -r $FRONTEND_USER && useradd -m -r -g $FRONTEND_USER $FRONTEND_USER
 # default to port 80 for node, and 5858 or 9229 for debug and 4200 for angular cli
 ARG PORT=80
 ENV PORT $PORT
-EXPOSE $PORT 5858 9229 8000
+EXPOSE $PORT 5858 9229 4200
 
 # Create angular app path
 RUN mkdir -p $ANGULARPATH
@@ -48,9 +48,9 @@ USER $FRONTEND_USER
 ENV PATH $ANGULARPATH/node_modules/.bin:$PATH
 
 # Set executable permissions to the cmd run script
-#RUN chmod +x ./docker/containers/akima-cms/cmd.sh
+#RUN chmod +x ./docker/containers/frontend/cmd.sh
 
 # Run script for checking environment and running angular cli
-#CMD [ "./docker/containers/akima-cms/cmd.sh" ]
-CMD [ "npm", "run", "serve-prod" ]
+#CMD [ "./docker/containers/frontend/cmd.sh" ]
+CMD [ "npm", "run", "serve" ]
 
