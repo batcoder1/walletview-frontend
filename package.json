@@ -6,12 +6,13 @@
     "ng": "ng",
     "start": "node server.js",
     "start:dev": "ng serve --host 0.0.0.0 --poll=2000",
-    "build": "ng build",
+    "build-docker": "ng build",
+    "build": "ng build --prod --aot",
     "build-prod": "ng build --prod --aot",
     "lint": "ng lint",
     "postinstall": "node patch.js",
     "e2e": "ng e2e",
-    "serve": "yarn build && http-server dist -p 4200",
+    "serve": "yarn build-docker && http-server dist -p 4200",
     "serve-prod": "yarn build-prod && http-server dist -p 4200"
   },
   "engines": {
