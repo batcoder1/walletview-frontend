@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Web3Service } from './util/web3.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+  input: string;
+  constructor(private web3Service: Web3Service) { }
+
+  onChangeAddress(address){
+    this.web3Service.refreshAccounts(address)
+  }
+
+
 }

@@ -1,11 +1,23 @@
-<mat-toolbar color="primary">WalletView_
-    <mat-icon>search</mat-icon>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div fxLayout="row"  class="maxwidth"  fxLayoutAlign="start center" fxLayoutGap="15px">
+      <div fxFlex="1 1 20%" fxHide.xs >
+        WalletView_<mat-icon>search</mat-icon>
+      </div>
+      <div fxFlex="1 1 5%" fxHide.sm fxHide.md fxHide.lg fxHide.xl >
+            _<mat-icon>search</mat-icon>
+          </div>
+      <div fxFlex="1 1 70%">
+        <search (address)="onChangeAddress($event)" (change)=emitAddress(input)></search>
+      </div>
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>
 <div fxLayout="row">
-    <div fxFlex="1 1 20%"></div>
-    <div fxFlex="1 1 60%">
-        <wallet></wallet>
+  <div fxFlex="1 1 20%"></div>
+  <div fxFlex="1 1 60%">
+    <wallet></wallet>
 
-    </div>
-    <div fxFlex="1 1 20%"></div>
+  </div>
+  <div fxFlex="1 1 20%"></div>
 </div>
