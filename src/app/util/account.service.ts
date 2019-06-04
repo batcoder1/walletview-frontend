@@ -13,7 +13,7 @@ export class AccountService {
    
 
   tokensAccount(address: string): Observable<any>{
-    // let add= '0xad9EB619Ce1033Cc710D9f9806A2330F85875f22'
+    // address= '0xad9EB619Ce1033Cc710D9f9806A2330F85875f22'
     const headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
     .set('Access-Control-Allow-Origin', '*')

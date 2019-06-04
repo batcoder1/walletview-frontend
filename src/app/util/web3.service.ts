@@ -54,9 +54,16 @@ export class Web3Service {
     }
   }
 
-  async refreshAccounts() {
+  async refreshAccounts(address?: string) {
+    console.log('refressAccounts...')
     try {
-      let accs = await this.web3.eth.getAccounts()
+      let accs = [];
+      if (!address){
+        accs = await this.web3.eth.getAccounts()
+
+      } else {
+        accs[0] = address;
+      }
       if (accs.length === 0) {
         console.warn('Couldn\'t get any accounts! Make sure your Ethereum client is configured correctly.');
         return false;
@@ -75,13 +82,36 @@ export class Web3Service {
       console.log('There was an error fetching your accounts.');
     }
   }
+  /**
+   * get balacne from a address
+   *
+   * @param {*} address
+   * @returns
+   * @memberof Web3Service
+   */
   async getBalance(address) {
+    let balance = 0;
+    if (this.isValid){
 
-    const balanceWei = await this.web3.eth.getBalance(address)
-    const balance = this.web3.utils.fromWei(balanceWei, 'ether')
+      const balanceWei = await this.web3.eth.getBalance(address)
+      balance = this.web3.utils.fromWei(balanceWei, 'ether')
+    }
     return balance
 
-
   }
-
+  /**
+   * Check is address is valid address
+   *
+   * @param {*} address
+   * @returns valid is true if is valid and false is not
+   * @memberof Web3Service
+   */
+  isValid(address):boolean{
+    const valid = this.web3.utils.isAddress(address)
+    return valid;
+  }
+  
+  setMainAccount(address) {
+    this.mainAccountBalance$.next(address);
+  }
 }

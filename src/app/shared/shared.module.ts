@@ -44,9 +44,10 @@ import {
 } from '@angular/material';
  
 import { FormsModule } from '@angular/forms';
-import { DialogComponent } from '../dialog/dialog.component';
-import { WalletComponent } from '../wallet/wallet.component';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { WalletComponent } from './components/wallet/wallet.component';
 import { Web3Service } from '../util/web3.service';
+import { SearchComponent } from './components/search/search.component';
  
  
 const materialModules = [  
@@ -90,7 +91,8 @@ const materialModules = [
 @NgModule({
   declarations:[
     WalletComponent,
-    DialogComponent
+    DialogComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
@@ -104,6 +106,7 @@ const materialModules = [
     ...materialModules,
     FlexLayoutModule,
     WalletComponent,
+    SearchComponent,
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {}},
